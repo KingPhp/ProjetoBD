@@ -1,0 +1,146 @@
+<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+						<div class="modal-header bg-danger">
+								<h5 class="modal-title text-white" id="smallmodalLabel"> <i class="fa fa-warning"></i> Aviso</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								<p>
+										TEM CERTEZA QUE DESEJA EXCLUIR SUA CONTA?
+								</p>
+						</div>
+						<form action="/remove" method="post">
+						<input type="hidden" name="id_vendedor" value="<?= $this->view->info['id_vendedor'] ?>">
+
+						<div class="modal-footer">
+								<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-danger">Confirmar</button>
+						</div>
+						</form>
+				</div>
+		</div>
+</div>
+
+<?php
+	if(isset($_SESSION['dados_pessoais']) && $_SESSION['dados_pessoais']==true){
+?>
+	<div class="col-12 m-0">
+		<div class="alert alert-primary " role="alert">
+				<a href="#" class="alert-link">Dados pessoais</a> alterados com sucesso.
+		</div>
+	</div>
+<?php }
+unset($_SESSION['dados_pessoais']); ?>
+
+
+<div class="container d-flex ">
+
+
+
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="card-header"><strong>Dados Pessoais</strong></div>
+                      <div class="card-body card-block">
+                        <form action="/update_dados" method="post" class="">
+													<div class="form-group">
+														<div class="input-group">
+															<input type="text" id="username2" name="nome" placeholder="Nome" class="form-control" value="<?= $this->view->info['nome'] ?>">
+															<div class="input-group-addon"><i class="fa fa-user"></i></div>
+														</div>
+													</div>
+													<input type="hidden" name="id_vendedor" value="<?= $this->view->info['id_vendedor'] ?>">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <input type="text" id="username2" name="username" placeholder="@username" class="form-control"  value="<?= $this->view->info['username'] ?>">
+                              <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <input disabled type="email" id="email2" placeholder="Email" class="form-control"  value="<?= $this->view->info['email'] ?>">
+                              <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <input type="text" id="password2" name="senha" placeholder="Senha" class="form-control"  value="<?= $this->view->info['senha'] ?>">
+                              <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                            </div>
+                          </div>
+                          <div class="form-actions form-group justify-content-end d-flex">
+														<button type="submit" class="btn btn-success btn-sm">Alterar</button>
+													</div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+
+									<div class="col-lg-6">
+										<div class="card">
+											<div class="card-header">
+												<strong>Endereço</strong>
+											</div>
+											<div class="card-body card-block">
+												<form action="vvv" method="post" class="form-horizontal">
+													<div class="row form-group">
+														<div class="col col-md-12">
+															<div class="input-group">
+																<div class="input-group-btn">
+																	<button class="btn btn-primary">
+																		<i class="fa fa-search"></i> CEP
+																	</button>
+																</div>
+																<input type="text" id="input1-group2" name="cep" placeholder="00.00.00-0" class="form-control"  value="<?= $this->view->info['cep'] ?>">
+															</div>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col col-md-12">
+															<div class="input-group">
+																<input type="email" id="input2-group2" name="logradouro" placeholder="Logradouro" class="form-control"  value="<?= $this->view->info['logradouro'] ?>">
+																<div class="input-group-btn"><button type="button" class="btn btn-primary">Logradouro</button></div>
+															</div>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col col-md-12">
+															<div class="input-group">
+																<div class="input-group-btn"><button class="btn btn-primary">Bairro</button></div>
+																<input type="text" id="input3-group2" name="bairro" placeholder="Ex: Jardim das capivaras" class="form-control"  value="<?= $this->view->info['bairro'] ?>">
+
+															</div>
+														</div>
+													</div>
+
+													<div class="row form-group">
+														<div class="col col-md-12">
+															<div class="input-group">
+																<div class="input-group-btn"><button class="btn btn-primary">Nº</button></div>
+																<input type="number" min="1" id="input3-group2" name="numero" placeholder="Ex: 1" class="form-control"  value="<?= $this->view->info['numero'] ?>">
+
+															</div>
+														</div>
+													</div>
+
+											</div>
+											<div class="card-footer justify-content-end d-flex">
+												<button type="submit" class="btn btn-success btn-sm">
+													<i class="fa fa-dot-circle-o"></i> Alterar
+												</button>
+
+												</form>
+											</div>
+										</div>
+									</div>
+	</div>
+
+	<div class="container  p-3">
+		<h3 class="text-dark"> <i class="fa fa-tasks"></i> Configurações</h3>
+		<hr>
+
+		<p class="pb-5"><a data-toggle="modal" data-target="#smallmodal"  href="#"> <i class="ti-trash "></i> Desejo exclur minha conta </a></p>
+	</div>
